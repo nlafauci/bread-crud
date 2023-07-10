@@ -1,3 +1,3 @@
-# Project REST-Rant
+# Bread-Crud
 
-REST-Rant is an app where users can review restaurants.
+Bread-Crud project
