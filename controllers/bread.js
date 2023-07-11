@@ -23,6 +23,8 @@ router.post('/', (req, res) => {
         req.body.hasGluten = false
     }
 
+    if(!req.body.image) req.body.image = 'https://images.unsplash.com/photo-1534620808146-d33bb39128b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+
     Bread.push(req.body)
     res.redirect('/breads')
 })
