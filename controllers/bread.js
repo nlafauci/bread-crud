@@ -1,20 +1,21 @@
 const router = require('express').Router()
 const Bread = require('../models/bread')
 
-router.get('/', (req, res) => {
-    res.render('index', { breads: Bread })
+router.get('/', async (req, res) => {
+    const breads = await Bread.find()
+    res.render('index', { breads })
 })
 
 router.get('/new', (req, res) => {
     res.render('new')
 })
 
-//Get bread by index
-router.get('/:index', (req, res) => {
-    const { index } = req.params
+//Get bread by id
+router.get('/:id', async (req, res) => {
+    const { id } = req.params
+    const bread = await Bread.findById(id)
     res.render('show', {
-        bread: Bread[index],
-        index: index
+        bread
     })
 })
 
@@ -26,16 +27,16 @@ router.get('/:index/edit', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if (req.body.hasGluten === 'on') {
-        req.bodyhasGluten = true
+        req.body.hasGluten = true
     } else {
         req.body.hasGluten = false
     }
 
-    if(!req.body.image) req.body.image = 'https://images.unsplash.com/photo-1534620808146-d33bb39128b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+    if(!req.body.image) req.body.image = undefined
 
-    Bread.push(req.body)
+    await Bread.create(req.body)
     res.redirect('/breads')
 })
 
