@@ -13,7 +13,7 @@ function Show ({ bread }) {
             }
             have gluten
         </p>
-        <p> Baked by {bread.baker} </p>
+        <p>{bread.getBakedBy()}</p>
         <img src={bread.image} alt={bread.name} />
         <a href={`/breads/${bread._id}/edit`}>
           <button> Edit </button>
