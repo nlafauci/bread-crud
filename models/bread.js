@@ -22,4 +22,8 @@ breadSchema.methods.getBakedBy = function() {
   return `${this.name} was baked with love by ${this.baker}`
 }
 
+breadSchema.methods.hasGlutenParagraph = function() {
+  return `and it ${this.hasGluten ? ' does ' : ' does not ' } have gluten`
+}
+
 module.exports = mongoose.model('Bread', breadSchema)
